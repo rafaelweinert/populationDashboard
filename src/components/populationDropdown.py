@@ -10,12 +10,12 @@ def render(app:Dash):
 
     return html.Div(
         children=[
-            html.H5('Year'),
+            html.H5('Population type'),
 
             dcc.Dropdown(
                 id=ids.POPULATION_DROPDOWN,
-                options = ['Absolute values', 'Relative values (to most recent year)'],
-                value='Absolute values'
+                options = [ids.ABSOLUTE_VALUES, ids.RELATIVE_TIME, ids.RELATIVE_COUNTRY],
+                value=ids.ABSOLUTE_VALUES
             ),
         ],
     )

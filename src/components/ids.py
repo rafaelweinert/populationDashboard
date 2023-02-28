@@ -1,3 +1,6 @@
 MAP = 'map'
 YEAR_SLIDER = 'year-slider'
 POPULATION_DROPDOWN = 'population-dropdown'
+ABSOLUTE_VALUES = 'Absolute values'
+RELATIVE_TIME = 'Relative values (to most recent year)'
+RELATIVE_COUNTRY = 'Relative values (to other countries)'

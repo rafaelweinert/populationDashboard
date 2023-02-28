@@ -40,12 +40,31 @@ def create_map(app: Dash, data):
     )
     def update_map(year, population_type):
 
-        fig = px.choropleth(data, locations="Country Code",
-                            color=str(year) if population_type=='Absolute values' else (data['2021'] / data[str(year)]),
-                            hover_name="Country Name",  # column to add to hover information
-                            color_continuous_scale=px.colors.sequential.Plasma,
-                            height=800,
-                            range_color=(0, 1500000000 if population_type=='Absolute values' else 30),)
+        if population_type==ids.ABSOLUTE_VALUES:
+
+            fig = px.choropleth(data, locations="Country Code",
+                                color=str(year),
+                                hover_name="Country Name",  # column to add to hover information
+                                color_continuous_scale=px.colors.sequential.Turbo,
+                                height=800,
+                                range_color=(0, 1500000000),)
+
+        if population_type==ids.RELATIVE_TIME:
+            fig = px.choropleth(data, locations="Country Code",
+                                color=(data['2021'] / data[str(year)]),
+                                hover_name="Country Name",  # column to add to hover information
+                                color_continuous_scale=px.colors.sequential.Turbo,
+                                height=800,
+                                range_color=(0, 30),)
+
+        if population_type==ids.RELATIVE_COUNTRY:
+            #print(data[(data['Country Code'] == 'WLD')][str(year)])
+            fig = px.choropleth(data, locations="Country Code",
+                                color=(data[str(year)] / (data[(data['Country Code'] == 'WLD')][str(year)].sum())),
+                                hover_name="Country Name",  # column to add to hover information
+                                color_continuous_scale=px.colors.sequential.Turbo,
+                                height=800,
+                                range_color=(0, 0.3),)
 
         return html.Div(
             dcc.Graph(figure=fig), id=ids.MAP
