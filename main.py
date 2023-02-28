@@ -54,14 +54,13 @@ def create_map(app: Dash, data):
     return html.Div(id=ids.MAP)
 
 
-#def main() -> None:
+
 app = Dash(external_stylesheets=[BOOTSTRAP])
 server = app.server
-app.title = 'Dashboard'
+app.title = 'Population dashboard'
 app.layout = create_layout(app)
 app.run()
 
-'''if __name__ == '__main__':
-    main()'''
+
 
 
