@@ -56,12 +56,12 @@ def create_map(app: Dash, data):
 
 def main() -> None:
     app = Dash(external_stylesheets=[BOOTSTRAP])
+    server = app.server
     app.title = 'Dashboard'
     app.layout = create_layout(app)
     app.run()
 
 if __name__ == '__main__':
-    create_layout(Dash())
     main()
 
 
